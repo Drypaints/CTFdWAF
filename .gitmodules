@@ -1,3 +1,6 @@
 [submodule "all-in-one"]
 	path = all-in-one
 	url = git@github.com:nextcloud/all-in-one.git
+[submodule "bunkerweb"]
+	path = bunkerweb
+	url = git@github.com:bunkerity/bunkerweb.git
