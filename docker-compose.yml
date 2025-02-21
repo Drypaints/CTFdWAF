@@ -1,1 +1,33 @@
-version: 3
+services:
+  nextcloud:
+    extends:
+      file: all-in-one/compose.yaml
+      service: nextcloud-aio-mastercontainer
+
+  bunkerweb:
+    extends:
+      file: compose-bunkerweb.yml
+      service: bunkerweb
+  
+  bw-scheduler:
+    extends: 
+      file: compose-bunkerweb.yml
+      service: bw-scheduler
+    depends_on:
+      - bunkerweb
+
+networks:
+  bw-universe:
+    name: bw-universe
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.20.30.0/24 # Static subnet so only authorized sources can access the BunkerWeb API
+  bw-services:
+    name: bw-services
+
+volumes: # If you want to store the data on a different drive, see https://github.com/nextcloud/all-in-one#how-to-store-the-filesinstallation-on-a-separate-drive
+  nextcloud_aio_mastercontainer:
+    name: nextcloud_aio_mastercontainer # This line is not allowed to be changed as otherwise the built-in backup solution will not work
+
+  bw-storage:
