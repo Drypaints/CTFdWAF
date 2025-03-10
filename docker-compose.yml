@@ -1,7 +1,7 @@
 services:
   nextcloud:
     extends:
-      file: all-in-one/compose.yaml
+      file: compose.yaml
       service: nextcloud-aio-mastercontainer
 
   bunkerweb:
