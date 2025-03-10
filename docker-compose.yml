@@ -16,18 +16,35 @@ services:
     depends_on:
       - bunkerweb
 
+  bw-ui:
+    extends:
+      file: compose-bunkerweb.yml
+      service: bw-ui
+    depends_on:
+      - bunkerweb
+
+  bw-db:
+    extends:
+      file: compose-bunkerweb.yml
+      service: bw-db
+    depends_on:
+      - bunkerweb
+
 networks:
   bw-universe:
     name: bw-universe
     ipam:
       driver: default
       config:
-        - subnet: 10.20.30.0/24 # Static subnet so only authorized sources can access the BunkerWeb API
+        - subnet: 10.20.30.0/24 # Make sure to set the correct IP range so the scheduler can send the configuration to the instance
   bw-services:
     name: bw-services
+  bw-db:
+    name: bw-db
 
 volumes: # If you want to store the data on a different drive, see https://github.com/nextcloud/all-in-one#how-to-store-the-filesinstallation-on-a-separate-drive
   nextcloud_aio_mastercontainer:
     name: nextcloud_aio_mastercontainer # This line is not allowed to be changed as otherwise the built-in backup solution will not work
 
+  bw-data:
   bw-storage:
