@@ -1,9 +1,4 @@
 services:
-  nextcloud:
-    extends:
-      file: nextcloud-compose.yml
-      service: nextcloud-aio-mastercontainer
-
   bunkerweb:
     extends:
       file: compose-bunkerweb.yml
@@ -43,8 +38,5 @@ networks:
     name: bw-db
 
 volumes: # If you want to store the data on a different drive, see https://github.com/nextcloud/all-in-one#how-to-store-the-filesinstallation-on-a-separate-drive
-  nextcloud_aio_mastercontainer:
-    name: nextcloud_aio_mastercontainer # This line is not allowed to be changed as otherwise the built-in backup solution will not work
-
   bw-data:
   bw-storage:
