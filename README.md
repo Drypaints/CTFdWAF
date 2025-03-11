@@ -4,4 +4,6 @@ CTFd, in docker, but with a WAF
 
 ## Sources
 
-bunkerweb
+<https://github.com/CTFd/CTFd>
+
+<https://github.com/bunkerity/bunkerweb>
