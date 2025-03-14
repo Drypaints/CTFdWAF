@@ -11,6 +11,19 @@ services:
     depends_on:
       - bunkerweb
 
+  bw-docker:
+    extends:
+      file: compose-bunkerweb.yml
+      service: bw-docker
+
+  bw-autoconf:
+    extends:
+      file: compose-bunkerweb.yml
+      service: bw-autoconf
+    depends_on:
+      - bunkerweb
+      - bw-docker
+
   bw-ui:
     extends:
       file: compose-bunkerweb.yml
@@ -85,6 +98,8 @@ networks:
   ctfd-internal:
     name: ctfd-internal
     internal: true
+  bw-docker:
+    name: bw-docker
 
 volumes: # If you want to store the data on a different drive, see https://github.com/nextcloud/all-in-one#how-to-store-the-filesinstallation-on-a-separate-drive
   bw-data:
