@@ -1,0 +1,14 @@
+version: '3'
+services:
+  flask-app:
+    container_name: "flask-app"
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - bw-services
+
+networks:
+  bw-services:
+    external: true
+    name: bw-services

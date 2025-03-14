@@ -58,13 +58,12 @@ services:
       MYSQL_USER: "bunkerweb"
       MYSQL_PASSWORD: "changeme" # Remember to set a stronger password for the database
     volumes:
-      - bw-data:/var/lib/mysql
+      - ./bw-data:/var/lib/mysql
     restart: "unless-stopped"
     networks:
       - bw-db
 
 volumes:
-  bw-data:
   bw-storage:
 
 networks:
