@@ -23,7 +23,7 @@ services:
     environment:
       <<: *bw-env
       BUNKERWEB_INSTANCES: "bunkerweb" # Make sure to set the correct instance name
-      SERVER_NAME: ""
+      SERVER_NAME: "bw.local"
       MULTISITE: "yes"
       UI_HOST: "http://bw-ui:7000" # Change it if needed
     volumes:
