@@ -7,7 +7,34 @@ services:
       - "5000:5000"
     networks:
       - bw-services
-
+    labels:
+      - "bunkerweb.IS_DRAFT=no"
+      - "bunkerweb.SERVER_NAME=flask-app.demo.lan"
+      - "bunkerweb.USE_TEMPLATE=low"
+      - "bunkerweb.BAD_BEHAVIOR_THRESHOLD=30"
+      - "bunkerweb.BAD_BEHAVIOR_BAN_TIME=3600"
+      - "bunkerweb.USE_BLACKLIST=no"
+      - "bunkerweb.USE_CORS=yes"
+      - "bunkerweb.CORS_ALLOW_ORIGIN=*"
+      - "bunkerweb.BLACKLIST_COUNTRY=US"
+      - "bunkerweb.USE_DNSBL=no"
+      - "bunkerweb.INTERCEPTED_ERROR_CODES=400 404 405 413 429 500 501 502 503 504"
+      - "bunkerweb.KEEP_UPSTREAM_HEADERS=*"
+      - "bunkerweb.CONTENT_SECURITY_POLICY="
+      - "bunkerweb.REFERRER_POLICY=no-referrer-when-downgrade"
+      - "bunkerweb.PERMISSIONS_POLICY="
+      - "bunkerweb.COOKIE_FLAGS=* SameSite=Lax"
+      - "bunkerweb.LIMIT_CONN_MAX_HTTP1=25"
+      - "bunkerweb.LIMIT_CONN_MAX_HTTP2=200"
+      - "bunkerweb.LIMIT_CONN_MAX_HTTP3=200"
+      - "bunkerweb.LIMIT_REQ_RATE=5r/s"
+      - "bunkerweb.ALLOWED_METHODS=GET|POST"
+      - "bunkerweb.MAX_CLIENT_SIZE=100m"
+      - "bunkerweb.USE_MODSECURITY=no"
+      - "bunkerweb.USE_MODSECURITY_CRS_PLUGINS=no"
+      - "bunkerweb.USE_REVERSE_PROXY=yes"
+      - "bunkerweb.REVERSE_PROXY_HOST=http://flask-app:5000"
+      - "bunkerweb.USE_UI=yes"
 networks:
   bw-services:
     external: true
