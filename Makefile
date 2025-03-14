@@ -1,10 +1,17 @@
 all: install up
 
 install:
+	@echo "Cloning CTFd..."
+	@./clone.sh
+	@echo "Setting random CFTd password..."
 	@head -c 64 /dev/urandom > CTFd/.ctfd_secret_key
+	@echo "Done!"
 up:
-	@docker compose up
+	@echo "Starting containers..."
+	@docker compose up -d
 down:
+	@echo "Stopping containers..."
 	@docker compose down
 clean:
-	rm -f CTFd/.ctfd_secret_key
+	@echo "Cleaning up..."
+	@rm -rf CTFd
