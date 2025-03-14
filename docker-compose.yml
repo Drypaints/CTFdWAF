@@ -46,7 +46,7 @@ services:
       - "8000:8000"
     environment:
       - UPLOAD_FOLDER=/var/uploads
-      - DATABASE_URL=mysql+pymysql://ctfd:ctfd@db/ctfd
+      - DATABASE_URL=mysql+pymysql://bunkerweb:changeme@bw-db/ctfd
       - REDIS_URL=redis://cache:6379
       - WORKERS=1
       - LOG_FOLDER=/var/log/CTFd
@@ -59,6 +59,16 @@ services:
       - ./CTFd:/opt/CTFd:ro
     networks:
       - bw-services
+      - bw-db
+      - ctfd-internal
+
+  cache:
+    image: redis:4
+    restart: always
+    volumes:
+    - .data/redis:/data
+    networks:
+        - ctfd-internal
 
 networks:
   bw-universe:
@@ -73,6 +83,9 @@ networks:
     name: bw-db
   bw-docker:
     name: bw-docker
+  ctfd-internal:
+    name: ctfd-internal
+    internal: true
 
 volumes: # If you want to store the data on a different drive, see https://github.com/nextcloud/all-in-one#how-to-store-the-filesinstallation-on-a-separate-drive
   bw-data:
