@@ -14,4 +14,5 @@ down:
 	@docker compose down
 clean:
 	@echo "Cleaning up..."
+	@./unclone.sh
 	@rm -rf CTFd
