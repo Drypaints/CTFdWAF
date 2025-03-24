@@ -12,6 +12,9 @@ up:
 down:
 	@echo "Stopping containers..."
 	@docker compose down
+reup: down up
+logs:
+	@docker compose logs
 clean:
 	@echo "Cleaning up..."
 	@./unclone.sh
